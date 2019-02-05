@@ -14,8 +14,8 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, private formBuilder:FormBuilder, private modalController:ModalController, private navParamas:NavParams) {
     this.userDetailsFrom = this.formBuilder.group({
-      'username': ['gargi', Validators.compose([Validators.required])],
-      'useremail': ['g@p.com', Validators.compose([Validators.required, Validators.email])]
+      'username': ['', Validators.compose([Validators.required])],
+      'useremail': ['', Validators.compose([Validators.required, Validators.email])]
     })
   }
   ionviewDidLoad() {

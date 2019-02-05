@@ -1,0 +1,20 @@
+user-detail {
+  ion-content{
+    position: absolute;
+    bottom: 0 !important;
+    top: unset !important;
+    height: 45%;
+    background: lightgray !important;
+    color: black;
+  }
+  .closeIcon{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    margin: 10px;
+    font-size: 2em;
+  }
+  .showContent{
+    margin: 30px;
+  }
+}

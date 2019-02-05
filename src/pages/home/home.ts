@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController, NavParams } from 'ionic-angular';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { UserDetailComponent } from '../../components/user-detail/user-detail';
 
 @Component({
   selector: 'page-home',
@@ -7,8 +9,26 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  userDetailsFrom:FormGroup;
+  modalOpen:boolean = false;
 
+  constructor(public navCtrl: NavController, private formBuilder:FormBuilder, private modalController:ModalController, private navParamas:NavParams) {
+    this.userDetailsFrom = this.formBuilder.group({
+      'username': ['gargi', Validators.compose([Validators.required])],
+      'useremail': ['g@p.com', Validators.compose([Validators.required, Validators.email])]
+    })
+  }
+  ionviewDidLoad() {
   }
 
+  submitUderDetail() {
+    let userData = this.userDetailsFrom.value;
+    let modal = this.modalController.create(UserDetailComponent, { data : userData });
+    modal.present().then((res) => {
+      res ? this.modalOpen = true : this.modalOpen = false;
+    }).catch((err) => {
+      console.log("error is", err)
+    })
+    modal.onDidDismiss(() => { this.modalOpen = false; console.log("the modal data is", this.navParamas.get('data'))})
+  }
 }
